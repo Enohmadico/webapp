@@ -9,11 +9,11 @@ on:
   pull_request:
     branches: 
       - main
-      - develop
+      - dev
   workflow_dispatch:
 env:
   DOTNET_ROOT: "."
-  AZURE_WEBAPP_NAME: 'Bush-Jeh-Test'
+  AZURE_WEBAPP_NAME: 'dotnet-example'
 
 jobs:
   Build:
@@ -80,7 +80,7 @@ jobs:
     needs: Build
     name: Deploying To Webapp Service
     environment:
-      name: 'DEVELOPMENT'
+      name: 'Production'
       url: ${{steps.deploy-to-webapp.outputs.webapp-url}}
     runs-on: windows-latest
     steps:
